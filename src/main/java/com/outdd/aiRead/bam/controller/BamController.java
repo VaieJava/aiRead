@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BamController {
     @RequestMapping("index")
     private String admin(ModelMap mo){
-        mo.put("title","AI阅读——后台管理系统");
+        mo.put("title","AI阅读——后台管理系统1");
         return "bam/bam_admin";
     }
 }
