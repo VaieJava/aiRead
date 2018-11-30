@@ -19,8 +19,13 @@ public class GlobalDefaultExceptionHandler {
     public String defaultExceptionHandler(HttpServletRequest req, Exception  e) {
 
         e.printStackTrace();
+        String resl="对不起服务器繁忙<br/>";
+        resl+=e.toString()+"<br/>";
+        resl+=e.getMessage()+"<br/>";
+        resl+=e.getLocalizedMessage()+"<br/>";
+        resl+=e+"<br/>";
         // 返回String
-        return "对不起服务器繁忙";
+        return resl;
 
         // 返回View 创建ModelAndView  mv = new ModelAndView("error")
     }

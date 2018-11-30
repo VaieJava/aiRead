@@ -34,6 +34,10 @@ public class CustomwebMvcConfigurer  implements WebMvcConfigurer {
         registration.addUrlMappings("*.ico");
         registration.addUrlMappings("*.jpeg");
         registration.addUrlMappings("*.jpg");
+        registration.addUrlMappings("*.eot");
+        registration.addUrlMappings("*.ttf");
+        registration.addUrlMappings("*.woff");
+        registration.addUrlMappings("*.svg");
         return registration;
     }
     @Override

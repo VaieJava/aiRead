@@ -27,7 +27,7 @@ public class TimeInterceptor {
      * &lt;功能详细描述&gt;
      * @see [类、类#方法、类#成员]
      */
-    @Pointcut("execution(* com.outdd.aiRead.ui.*.*(..))!execution(* com.outdd.toolbox.ToolboxApplication.*(..)) ")
+    @Pointcut("execution(* com.outdd.aiRead..*(..))!execution(* com.outdd.aiRead.AiReadApplication.*(..)) ")
     private void pointCutMethod() {
     }
 
