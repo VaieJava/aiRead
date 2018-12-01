@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.outdd.aiRead.bam.menu.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.outdd.aiRead.bam.menu.pojo.Menu" >
+    <id column="menu_id" property="menuId" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="menu_level" property="menuLevel" jdbcType="VARCHAR" />
+    <result column="menu_pid" property="menuPid" jdbcType="VARCHAR" />
+    <result column="menu_weight" property="menuWeight" jdbcType="INTEGER" />
+    <result column="menu_state" property="menuState" jdbcType="INTEGER" />
+    <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR" />
+    <collection property="menus" ofType="com.outdd.aiRead.bam.menu.pojo.Menu"
+                select="getMenus"
+                column="menu_id">
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    menu_id, menu_name, menu_url, menu_level, menu_pid, menu_weight, menu_state, menu_icon
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findList" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     from menu
+    where menu_level='0'
+    GROUP BY menu_weight
+  </select>
+
+  <select id="getMenus" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+   menu_id, menu_name, menu_url, menu_level, menu_pid, menu_weight, menu_state,menu_icon
+    from menu
+    where menu_pid = #{menuPid,jdbcType=VARCHAR}
+    and menu_id != #{menuPid,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.outdd.aiRead.bam.menu.pojo.Menu" >
+    insert into menu (menu_id, menu_name, menu_url, 
+      menu_level, menu_pid, menu_weight, 
+      menu_state, menu_icon)
+    values (#{menuId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, 
+      #{menuLevel,jdbcType=VARCHAR}, #{menuPid,jdbcType=VARCHAR}, #{menuWeight,jdbcType=INTEGER}, 
+      #{menuState,jdbcType=INTEGER}, #{menuIcon,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.outdd.aiRead.bam.menu.pojo.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="menuUrl != null" >
+        menu_url,
+      </if>
+      <if test="menuLevel != null" >
+        menu_level,
+      </if>
+      <if test="menuPid != null" >
+        menu_pid,
+      </if>
+      <if test="menuWeight != null" >
+        menu_weight,
+      </if>
+      <if test="menuState != null" >
+        menu_state,
+      </if>
+      <if test="menuIcon != null" >
+        menu_icon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLevel != null" >
+        #{menuLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="menuPid != null" >
+        #{menuPid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuWeight != null" >
+        #{menuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="menuState != null" >
+        #{menuState,jdbcType=INTEGER},
+      </if>
+      <if test="menuIcon != null" >
+        #{menuIcon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.outdd.aiRead.bam.menu.pojo.Menu" >
+    update menu
+    <set >
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLevel != null" >
+        menu_level = #{menuLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="menuPid != null" >
+        menu_pid = #{menuPid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuWeight != null" >
+        menu_weight = #{menuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="menuState != null" >
+        menu_state = #{menuState,jdbcType=INTEGER},
+      </if>
+      <if test="menuIcon != null" >
+        menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.outdd.aiRead.bam.menu.pojo.Menu" >
+    update menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      menu_level = #{menuLevel,jdbcType=VARCHAR},
+      menu_pid = #{menuPid,jdbcType=VARCHAR},
+      menu_weight = #{menuWeight,jdbcType=INTEGER},
+      menu_state = #{menuState,jdbcType=INTEGER},
+      menu_icon = #{menuIcon,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+</mapper>
