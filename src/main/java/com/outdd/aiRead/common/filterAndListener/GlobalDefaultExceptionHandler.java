@@ -1,5 +1,6 @@
 package com.outdd.aiRead.common.filterAndListener;
 
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,8 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(value = Exception.class)
-    @ResponseBody   // 如果返回String或json要加此注解如果返回界面就不加
-    public String defaultExceptionHandler(HttpServletRequest req, Exception  e) {
+    public String defaultExceptionHandler(HttpServletRequest req, Exception  e , ModelMap mo) {
 
         e.printStackTrace();
         String resl="对不起服务器繁忙<br/>";
@@ -24,8 +24,10 @@ public class GlobalDefaultExceptionHandler {
         resl+=e.getMessage()+"<br/>";
         resl+=e.getLocalizedMessage()+"<br/>";
         resl+=e+"<br/>";
+
+        mo.put("resl",resl);
         // 返回String
-        return resl;
+        return "common/500";
 
         // 返回View 创建ModelAndView  mv = new ModelAndView("error")
     }

@@ -1,5 +1,7 @@
 package com.outdd.aiRead.bam.menu.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.outdd.aiRead.bam.menu.dao.MenuMapper;
 import com.outdd.aiRead.bam.menu.pojo.Menu;
 import com.outdd.aiRead.bam.menu.service.MenuService;
@@ -16,11 +18,20 @@ import java.util.List;
 @Service
 public class MenuServiceImpl implements MenuService {
 
-    @Autowired
+    @Resource
     MenuMapper menuMapper;
     @Override
     public List<Menu> findList() {
-        System.out.println("asd");
-        return menuMapper.findList();
+        Menu menu = new Menu();
+        menu.setMenuLevel("1");
+        menu.setMenuState(1);
+        return menuMapper.findList(menu);
+    }
+
+    @Override
+    public PageInfo<Menu> findList(PageInfo page) {
+        PageHelper.startPage(page);
+        List<Menu> menus=menuMapper.findList(null);
+        return new PageInfo<>(menus);
     }
 }

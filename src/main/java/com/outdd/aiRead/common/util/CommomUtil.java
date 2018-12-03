@@ -122,6 +122,11 @@ public class CommomUtil {
         System.out.println(port);
     }
 
+    /**
+     * 小说前端
+     * @param page
+     * @return
+     */
     public static String getPageDiv(PageInfo page) {
         StringBuilder sb = new StringBuilder();
 
@@ -163,6 +168,55 @@ public class CommomUtil {
         sb.append("<a href=\"#\" class=\"lbf-pagination-go\" id=\"PAGINATION-BUTTON\">GO</a></div>");
 
         sb.insert(0, "<div class=\"lbf-pagination\">\n").append("</div>\n");
+
+
+        return sb.toString();
+
+    }
+    /**
+     * 小说后端
+     * @param page
+     * @return
+     */
+    public static String getPageDivAdmin(PageInfo page) {
+        StringBuilder sb = new StringBuilder();
+
+        if (page.isIsFirstPage()) {// 如果是首页
+            sb.append("<li class=\"page-pre\"><a href=\"#\"><</a></li>\n");
+        } else {
+            sb.append("<li class=\"page-pre\"><a href=\"/#\"><</a></li>\n");
+        }
+
+        if(!page.isIsFirstPage()&& page.getPageNum()>5){
+            sb.append("<li class=\"page-number\"><a  href=\"#\">1</a></li>\n");
+            sb.append("<li class=\"page-number\">...</li>\n");
+        }
+        for (int i :page.getNavigatepageNums()) {
+
+            if (i == page.getPageNum()) {
+                sb.append("<li class=\"page-number active\"><a href=\"#\">" + i + "</a></li>\n");
+            } else {
+                sb.append("<li class=\"page-number\"><a href=\"#\">" + i + "</a></li>\n");
+            }
+        }
+
+        if(!page.isIsLastPage()&& page.getPageNum()< (page.getPages() -3)){
+            sb.append("<li class=\"page-number\">...</li>\n");
+            sb.append("<li class=\"page-number\"><a href=\"#\">"+page.getPages()+"</a></li>\n");
+
+        }
+
+        if (page.isIsLastPage()) {// 如果是末页
+            sb.append("<li class=\"page-next\"><a href=\"javascript:\">></a></li>\n");
+        } else {
+            sb.append("<li class=\"page-next\"><a href=\"#\">></a></li>\n");
+        }
+
+
+        sb.insert(0, "<ul class=\"pagination\">\n").append("</ul>\n");
+
+
+        sb.insert(0, "<div class=\"pull-right pagination\">\n").append("</div>\n");
 
 
         return sb.toString();

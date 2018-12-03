@@ -1647,11 +1647,12 @@
             $("#content-container").html(data);//初始化加载界面
         });
         $("#mainnav-menu li a").click(function () {//点击li加载界面
-            var target = $(this).attr('target')
+            var target = $(this).attr('targett')
 
-            debugger
             if(target.length >0){
-                $.get(target, function (data) {
+                $.post(target, function (data) {
+
+                    debugger
                     $("#content-container").html(data);
                 });
             }

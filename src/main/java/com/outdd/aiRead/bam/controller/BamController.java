@@ -33,13 +33,7 @@ public class BamController {
         return "bam/bam_admin";
     }
 
-    @RequestMapping("list")
-    public String list(ModelMap mo) {
-        List<Menu> menuList = menuService.findList();
-        mo.put("menu", menuFormat(menuList));
-        mo.put("title", "AI阅读——菜单管理");
-        return "bam/menu/list";
-    }
+
 
     public String menuFormat(List<Menu> menuList) {
         StringBuilder result = new StringBuilder();
@@ -102,7 +96,7 @@ public class BamController {
 
 
                 if( "2".equals(menu.getMenuLevel())){
-                    content+="<li><a href=\"#\" target=\""+menu.getMenuUrl()+"\">"+menu.getMenuName()+"</a></li>";
+                    content+="<li><a href=\"#\" targett=\""+menu.getMenuUrl()+"\">"+menu.getMenuName()+"</a></li>";
                 }
                 result+=content;
                 if(CommomUtil.isNotNull(menu.getMenus()) && menu.getMenus().size() != 0){

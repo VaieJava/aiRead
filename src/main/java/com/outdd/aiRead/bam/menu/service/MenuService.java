@@ -1,5 +1,6 @@
 package com.outdd.aiRead.bam.menu.service;
 
+import com.github.pagehelper.PageInfo;
 import com.outdd.aiRead.bam.menu.pojo.Menu;
 
 import java.util.List;
@@ -10,4 +11,5 @@ import java.util.List;
  */
 public interface MenuService {
     List<Menu> findList();
+    PageInfo<Menu> findList(PageInfo page);
 }

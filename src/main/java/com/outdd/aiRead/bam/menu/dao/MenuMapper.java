@@ -20,6 +20,7 @@ public interface MenuMapper {
 
     int updateByPrimaryKey(Menu record);
 
-//    @Select("SELECT "+sql+" from menu GROUP BY menu_weight")
     List<Menu> findList();
+
+    List<Menu> findList(Menu menu);
 }

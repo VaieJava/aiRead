@@ -8,22 +8,34 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet'
           type='text/css'>
     <!--Bootstrap Stylesheet [ REQUIRED ]-->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.isok.cc/css/bootstrap.min.css" rel="stylesheet">
     <!--Nifty Stylesheet [ REQUIRED ]-->
-    <link href="/css/nifty.min.css" rel="stylesheet">
+    <link href="http://www.isok.cc/css/nifty.min.css" rel="stylesheet">
     <!--Nifty Premium Icon [ DEMONSTRATION ]-->
-    <link href="/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+    <link href="http://www.isok.cc/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
     <!--JAVASCRIPT-->
     <!--=================================================-->
     <!--Pace - Page Load Progress Par [OPTIONAL]-->
-    <link href="/plugins/pace/pace.min.css" rel="stylesheet">
-    <script src="/plugins/pace/pace.min.js"></script>
+    <link href="http://www.isok.cc/plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="http://www.isok.cc/plugins/pace/pace.min.js"></script>
     <!--jQuery [ REQUIRED ]-->
-    <script src="/js/jquery.min.js"></script>
+    <script src="http://www.isok.cc/js/jquery.min.js"></script>
     <!--BootstrapJS [ RECOMMENDED ]-->
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="http://www.isok.cc/js/bootstrap.min.js"></script>
     <!--NiftyJS [ RECOMMENDED ]-->
-    <script src="/js/nifty.min.js"></script>
+    <script src="http://www.isok.cc/js/nifty.min.js"></script>
+    <!--=================================================-->
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="http://www.isok.cc/js/demo/nifty-demo.min.js"></script>
+    <!--Bootstrap Table Sample [ SAMPLE ]-->
+    <script src="http://www.isok.cc/js/demo/tables-bs-table.js"></script>
+    <!--X-editable [ OPTIONAL ]-->
+    <script src="http://www.isok.cc/plugins/x-editable/js/bootstrap-editable.min.js"></script>
+    <!--Bootstrap Table [ OPTIONAL ]-->
+    <script src="http://www.isok.cc/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <!--Bootstrap Table Extension [ OPTIONAL ]-->
+    <script src="http://www.isok.cc/plugins/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
+
     <!--=================================================-->
     <!--=================================================
 
@@ -75,8 +87,232 @@
             <!--End page title-->
         </div>
         <div id="page-content">
-            <hr class="new-section-sm bord-no">
             <div class="row">
+                <!--菜单列表表格-->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            菜单管理
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="bootstrap-table">
+
+                            <div class="fixed-table-toolbar">
+                                <div class="bs-bars pull-left">
+                                    <button id="demo-delete-row" class="btn btn-danger">
+                                        <i class="demo-pli-cross"></i>删除
+                                    </button>
+                                    <button id="demo-add-row" class="btn btn-success">
+                                        <i class="demo-pli-cross"></i>添加
+                                    </button>
+                                    <button id="demo-updata-row" class="btn btn-info">
+                                        <i class="demo-pli-cross"></i>修改
+                                    </button>
+                                </div>
+                                <div class="columns columns-right btn-group pull-right">
+                                    <button class="btn btn-default" type="button" name="paginationSwitch"
+                                            aria-label="pagination Switch" title="Hide/Show pagination">
+                                        <i class="glyphicon demo-pli-arrow-down"></i>
+                                    </button>
+                                    <button class="btn btn-default" type="button" name="refresh" aria-label="refresh"
+                                            title="Refresh">
+                                        <i class="glyphicon demo-pli-repeat-2"></i>
+                                    </button>
+                                    <button class="btn btn-default" type="button" name="toggle" aria-label="toggle"
+                                            title="Toggle">
+                                        <i class="glyphicon demo-pli-layout-grid"></i>
+                                    </button>
+                                    <div class="keep-open btn-group" title="Columns">
+                                        <button type="button" aria-label="columns"
+                                                class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <i class="glyphicon demo-pli-check"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li role="menuitem">
+                                                <label>
+                                                    <input type="checkbox" data-field="id" value="0" checked="checked">
+                                                    Invoice
+                                                </label>
+                                            </li>
+                                            <li role="menuitem">
+                                                <label>
+                                                    <input type="checkbox" data-field="name" value="1"
+                                                           checked="checked">
+                                                    Name
+                                                </label>
+                                            </li>
+                                            <li role="menuitem">
+                                                <label>
+                                                    <input type="checkbox" data-field="date" value="2"
+                                                           checked="checked">
+                                                    Order date
+                                                </label>
+                                            </li>
+                                            <li role="menuitem">
+                                                <label>
+                                                    <input type="checkbox" data-field="amount" value="3"
+                                                           checked="checked">
+                                                    Amount
+                                                </label>
+                                            </li>
+                                            <li role="menuitem">
+                                                <label>
+                                                    <input type="checkbox" data-field="status" value="4"
+                                                           checked="checked">
+                                                    Status
+                                                </label>
+                                            </li>
+                                            <li role="menuitem">
+                                                <label>
+                                                    <input type="checkbox" data-field="track" value="5"
+                                                           checked="checked">
+                                                    Tracking Number
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pull-right search">
+                                    <input class="form-control" type="text" placeholder="Search">
+                                </div>
+                            </div>
+                            <div class="fixed-table-container" style="padding-bottom: 0px;">
+                                <div class="fixed-table-header" style="display: none;">
+                                    <table></table>
+                                </div>
+                                <div class="fixed-table-body">
+                                    <div class="fixed-table-loading" style="top: 41.8px; display: none;">Loading, please
+                                        wait...
+                                    </div>
+                                    <table id="demo-editable" data-search="true" data-show-refresh="true"
+                                           data-show-toggle="true" data-show-columns="true" data-sort-name="id"
+                                           data-page-list="[5, 10, 20]" data-page-size="10" data-pagination="true"
+                                           data-show-pagination-switch="true" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="" data-field="id">
+                                                    <div class="th-inner ">序号</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="" data-field="name">
+                                                    <div class="th-inner ">名称</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="" data-field="date">
+                                                    <div class="th-inner ">目录等级</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="" data-field="amount">
+                                                    <div class="th-inner ">URL（连接地址）</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="text-align: center; " data-field="status">
+                                                    <div class="th-inner ">状态</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="" data-field="track">
+                                                    <div class="th-inner ">权重值</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="entity,iterStat : ${page.list}" data-index="0">
+                                                <td style="">
+                                                    <a href="#" class="btn-link" th:text="${iterStat.index+1}"></a>
+                                                </td>
+                                                <td style="">
+                                                    <a href="javascript:void(0)" data-name="name" data-pk="53431"
+                                                       data-value="Steve N. Horton" class="editable editable-click"
+                                                       th:text="${entity.menuName}">
+                                                    </a>
+                                                </td>
+                                                <td style="" th:text="${entity.menuLevel}"></td>
+                                                <td style="">
+                                                    <a href="javascript:void(0)" data-name="amount" data-pk="53431"
+                                                       data-value="$45.00" class="editable editable-click"
+                                                       th:text="${entity.menuUrl}">
+                                                    </a>
+                                                </td>
+                                                <td style="text-align: center; ">
+                                                    <div th:if="${entity.menuState == 1}">
+                                                        <div class="label label-table label-success">启动</div>
+                                                    </div>
+                                                    <div th:unless="${entity.menuState == 1}">
+                                                        <div class="label label-table label-danger">未启动</div>
+                                                    </div>
+                                                </td>
+                                                <td style="">
+                                                    <a href="javascript:void(0)" data-name="track" data-pk="53431"
+                                                       data-value="undefined" class="editable editable-click"
+                                                       th:text="${entity.menuWeight}">
+
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-footer" style="display: none;">
+                                    <table>
+                                        <tbody>
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-pagination" style="">
+                                    <div class="pull-left pagination-detail">
+                                        <span class="pagination-info">Showing 1 to 10 of 25 rows</span>
+                                        <span class="page-list">
+                                            <span class="btn-group dropup">
+                                                <button type="button" class="btn btn-default dropdown-toggle"
+                                                        data-toggle="dropdown">
+                                                    <span class="page-size">10</span>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li role="menuitem">
+                                                        <a href="#">5</a>
+                                                    </li>
+                                                    <li role="menuitem" class="active">
+                                                        <a href="#">10</a>
+                                                    </li>
+                                                    <li role="menuitem">
+                                                        <a href="#">20</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                            rows per page
+                                        </span>
+                                    </div>
+                                    <div th:utext="${asd}">
+                                        <ul class="pagination">
+                                            <li class="page-pre">
+                                                <a href="#">‹</a>
+                                            </li>
+                                            <li class="page-number active">
+                                                <a href="#">1</a>
+                                            </li>
+                                            <li class="page-number">
+                                                <a href="#">2</a>
+                                            </li>
+                                            <li class="page-number">
+                                                <a href="#">3</a>
+                                            </li>
+                                            <li class="page-next">
+                                                <a href="#">›</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
                 <div class="col-lg-6 col-lg-offset-3">
                     <div class="panel panel-trans text-center">
                         <div class="panel-heading">
@@ -85,6 +321,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
+
                             <p>
                                 Start putting content on grids or panels, you can also use different combinations
                                 of grids.
