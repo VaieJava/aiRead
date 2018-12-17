@@ -1,12 +1,15 @@
 package com.outdd.aiRead.common.filterAndListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
@@ -21,6 +24,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Autowired
     MyUserDetailsService myUserDetailsService;
+    @Bean
+    public PasswordEncoder passwordEncoder(){ //这里注入了就可以了
+        return  new BCryptPasswordEncoder();
+    }
 
     /**
      * 配置user-detail服务
@@ -44,9 +51,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/","/css/**","/js/**").permitAll()   //任何人都可以访问
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")     //持有user权限的用户可以访问
                 .antMatchers("/user/**").hasAuthority("ROLE_USER")
-                .and().formLogin()
-                .loginPage("/login_page.do").usernameParameter("username").passwordParameter("password")
-                .and().exceptionHandling().accessDeniedPage("/loginfail");
+                .and()
+                .formLogin()
+                .loginPage("/login_page")
+                .loginProcessingUrl("/admin/index")
+                .failureForwardUrl("/login_page?error")
+                .successForwardUrl("/admin/index")
+                .defaultSuccessUrl("/admin/index").permitAll()
+                .and().csrf().disable();
     }
 
     /**

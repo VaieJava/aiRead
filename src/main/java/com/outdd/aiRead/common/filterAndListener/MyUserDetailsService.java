@@ -1,13 +1,16 @@
 package com.outdd.aiRead.common.filterAndListener;
 
 import com.outdd.aiRead.bam.user.pojo.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,6 +22,8 @@ import java.util.List;
  */
 @Component
 public class MyUserDetailsService implements UserDetailsService {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDetails userDetails = null;
@@ -27,8 +32,10 @@ public class MyUserDetailsService implements UserDetailsService {
             favUser.setLoginName("favccxx");
             favUser.setPassword("favccxx");
             Collection<GrantedAuthority> authList = getAuthorities();
-            userDetails = new org.springframework.security.core.userdetails.User(username, favUser.getPassword().toLowerCase(),true,true,true,true,authList);
+            String pWord =passwordEncoder.encode("favccxx");
+            userDetails = new org.springframework.security.core.userdetails.User("favccxx",pWord,true,true,true,true,authList);
         }catch (Exception e) {
+            System.out.println("错误了");
             e.printStackTrace();
         }
         return userDetails;

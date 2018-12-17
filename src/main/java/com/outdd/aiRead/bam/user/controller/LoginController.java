@@ -19,8 +19,9 @@ public class LoginController {
     String stir="bam/";
 
     @RequestMapping("/login_page")
-    public String list(PageInfo<Menu> page, ModelMap mo) {
+    public String list(String info, ModelMap mo) {
 
+        mo.put("err","错误");
         return stir+"login";
     }
 }
