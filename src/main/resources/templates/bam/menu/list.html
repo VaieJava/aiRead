@@ -1,7 +1,6 @@
 <!DOCTYPE>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head th:replace="/common/header :: head(${title})"></head>
-    </head>
     <!--STYLESHEET-->
     <!--=================================================-->
     <!--Open Sans Font [ OPTIONAL ]-->
@@ -64,28 +63,9 @@
     =================================================-->
 
     <body>
-        <div id="page-head">
+        <!--page-head导入-->
+        <div id="page-head"  th:replace="common/page-head :: page-head"></div>
 
-            <!--Page Title-->
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-            <div id="page-title">
-                <h1 class="page-header text-overflow" th:text="${title}"></h1>
-
-                <!--Searchbox-->
-                <div class="searchbox">
-                    <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search..">
-                        <span class="input-group-btn">
-                            <button class="text-muted" type="button">
-                                <i class="demo-pli-magnifi-glass"></i>
-                            </button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-            <!--End page title-->
-        </div>
         <div id="page-content">
             <div class="row">
                 <!--菜单列表表格-->
@@ -103,7 +83,7 @@
                                     <button id="demo-delete-row" class="btn btn-danger">
                                         <i class="demo-pli-cross"></i>删除
                                     </button>
-                                    <button id="demo-add-row" class="btn btn-success">
+                                    <button id="demo-add-row" class="btn btn-success" name="/menu/create.do">
                                         <i class="demo-pli-cross"></i>添加
                                     </button>
                                     <button id="demo-updata-row" class="btn btn-info">
@@ -188,7 +168,7 @@
                                     </div>
                                     <table id="demo-editable" data-search="true" data-show-refresh="true"
                                            data-show-toggle="true" data-show-columns="true" data-sort-name="id"
-                                           data-page-list="[5, 10, 20]" data-page-size="10" data-pagination="true"
+                                           data-page-list="[5, 10, 20]" data-page-size="20" data-pagination="true"
                                            data-show-pagination-switch="true" class="table table-hover">
                                         <thead>
                                             <tr>
@@ -262,76 +242,18 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="fixed-table-pagination" style="">
-                                    <div class="pull-left pagination-detail">
-                                        <span class="pagination-info">Showing 1 to 10 of 25 rows</span>
-                                        <span class="page-list">
-                                            <span class="btn-group dropup">
-                                                <button type="button" class="btn btn-default dropdown-toggle"
-                                                        data-toggle="dropdown">
-                                                    <span class="page-size">10</span>
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li role="menuitem">
-                                                        <a href="#">5</a>
-                                                    </li>
-                                                    <li role="menuitem" class="active">
-                                                        <a href="#">10</a>
-                                                    </li>
-                                                    <li role="menuitem">
-                                                        <a href="#">20</a>
-                                                    </li>
-                                                </ul>
-                                            </span>
-                                            rows per page
-                                        </span>
+                                    <div class="fixed-table-pagination" style="" th:utext="${asd}">
+
                                     </div>
-                                    <div th:utext="${asd}">
-                                        <ul class="pagination">
-                                            <li class="page-pre">
-                                                <a href="#">‹</a>
-                                            </li>
-                                            <li class="page-number active">
-                                                <a href="#">1</a>
-                                            </li>
-                                            <li class="page-number">
-                                                <a href="#">2</a>
-                                            </li>
-                                            <li class="page-number">
-                                                <a href="#">3</a>
-                                            </li>
-                                            <li class="page-next">
-                                                <a href="#">›</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
-
-                <div class="col-lg-6 col-lg-offset-3">
-                    <div class="panel panel-trans text-center">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                Your content here...
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-
-                            <p>
-                                Start putting content on grids or panels, you can also use different combinations
-                                of grids.
-                                <br>
-                                Please check out the dashboard and other pages.
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+        <!--js导入-->
+        <div th:replace="common/footer :: foot"></div>
     </body>
 </html>

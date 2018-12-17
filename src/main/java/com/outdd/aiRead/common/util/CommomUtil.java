@@ -180,6 +180,30 @@ public class CommomUtil {
      */
     public static String getPageDivAdmin(PageInfo page) {
         StringBuilder sb = new StringBuilder();
+        StringBuilder ye = new StringBuilder();
+
+        ye.append("<span class=\"pagination-info\">当前第 "+page.getPageNum()+" 页，每页显示 "+page.getPageSize()+"条 ，共"+page.getPages()+"页</span>");
+        ye.append("<span class=\"page-list\">");
+        ye.append("<span class=\"btn-group dropup\">");
+        ye.append("<button type=\"button\" class=\"btn btn-default dropdown-toggle\"data-toggle=\"dropdown\">");
+        ye.append("<span class=\"page-size\">"+page.getPageSize()+"</span>");
+        ye.append("<span class=\"caret\"></span>");
+        ye.append("</button>");
+        ye.append("<ul class=\"dropdown-menu\" role=\"menu\">");
+        ye.append("<li role=\"menuitem\">" +
+              "<a href=\"#\">5</a>" +
+              "</li>\n" +
+              "<li role=\"menuitem\" class=\"active\">" +
+              "<a href=\"#\">10</a>" +
+              "</li>" +
+              "<li role=\"menuitem\">" +
+              "<a href=\"#\">20</a>" +
+              "</li>");
+        ye.append("</ul>");
+        ye.append("</span>");
+        ye.append("选择页面");
+        ye.append("</span>");
+        ye.insert(0, "<div class=\"pull-left pagination-detail\">").append("</div>");
 
         if (page.isIsFirstPage()) {// 如果是首页
             sb.append("<li class=\"page-pre\"><a href=\"#\"><</a></li>\n");
@@ -219,7 +243,7 @@ public class CommomUtil {
         sb.insert(0, "<div class=\"pull-right pagination\">\n").append("</div>\n");
 
 
-        return sb.toString();
+        return ye.toString()+sb.toString();
 
     }
 }

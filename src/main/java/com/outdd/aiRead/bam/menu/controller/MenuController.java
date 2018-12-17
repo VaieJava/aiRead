@@ -21,6 +21,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/menu/")
 public class MenuController {
+    String stir="bam/menu/";
     @Autowired
     MenuService menuService;
     @RequestMapping("list")
@@ -31,6 +32,24 @@ public class MenuController {
         mo.put("page",pageEntity);
         mo.put("asd",asd);
         mo.put("title", "AI阅读——菜单管理");
-        return "bam/menu/list";
+        return stir+"list";
+    }
+
+
+    @RequestMapping("queryById")
+    public String queryById(String id,ModelMap mo){
+        return stir+"update";
+    }
+
+    @RequestMapping("update")
+    public String update(ModelMap mo){
+        mo.put("title", "AI阅读——修改");
+        return stir+"update";
+    }
+
+    @RequestMapping("create")
+    public String create(ModelMap mo){
+        mo.put("title", "AI阅读——新增");
+        return stir+"create";
     }
 }
