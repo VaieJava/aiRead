@@ -1,5 +1,6 @@
 package com.outdd.aiRead.common.filterAndListener;
 
+import com.outdd.aiRead.bam.user.service.UserApiService;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +32,27 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserApiService userApiService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("用户的用户名: {}", username);
-        String password = passwordEncoder.encode("123456");
-        log.info("password: {}", password);
-        Collection<GrantedAuthority> authList = getAuthorities();
-        // 封装用户信息，并返回。参数分别是：用户名，密码，用户权限
-        User user = new User(username, password,
-                authList);
+        User user = null;
+        try {
+            //1.通过用户名查询用户
+            log.info("用户的用户名: {}", username);
+            com.outdd.aiRead.bam.user.pojo.User u=userApiService.selectByPrimaryName(username);
+             username=u.getLoginName();
+            String password = passwordEncoder.encode(u.getPassword());
+            log.info("password: {}", password);
+            Collection<GrantedAuthority> authList = getAuthorities();
+            // 封装用户信息，并返回。参数分别是：用户名，密码，用户权限
+             user = new User(username, password,
+                    authList);
+        }catch (Exception e) {
+        e.printStackTrace();
+    }
+
         return user;
 
     }
