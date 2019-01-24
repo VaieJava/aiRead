@@ -5,6 +5,7 @@ import com.outdd.aiRead.common.base.BaseApiService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,12 @@ public class MyAuthenctiationSuccessHandler extends SimpleUrlAuthenticationSucce
         public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                             Authentication authentication) throws IOException, ServletException {
             log.info("登录成功");
-            response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString(new BaseApiService().setResultSuccess(authentication)));
+//            response.setContentType("application/json;charset=UTF-8");
+//            response.getWriter().write(objectMapper.writeValueAsString(new BaseApiService().setResultSuccess(authentication)));
+            String url=request.getRequestURI();
+            url="admin/index.do";
+
+            //如果是要跳转到某个页面的
+            new DefaultRedirectStrategy().sendRedirect(request, response, url);
         }
     }

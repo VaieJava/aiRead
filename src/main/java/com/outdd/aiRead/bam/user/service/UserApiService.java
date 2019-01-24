@@ -13,4 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserApiService {
    //通过用户名查找用户
     User selectByPrimaryName(String userName);
+
+    Integer addUser(User user);
 }

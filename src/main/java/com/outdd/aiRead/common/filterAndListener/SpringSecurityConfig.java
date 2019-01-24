@@ -64,10 +64,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()    //设置表单登录
                 .loginPage("/login_page.do")  //设置登录页面
                 .loginProcessingUrl("/login")  // 自定义的登录接口
-                .successForwardUrl("/admin/index") //
-//                .successHandler(myAuthenctiationSuccessHandler) // 自定义登录成功处理
-                .failureHandler(myAuthenctiationFailureHandler); // 自定义登录失败处理;
-
+                .successHandler(myAuthenctiationSuccessHandler) // 自定义登录成功处理
+                .failureHandler(myAuthenctiationFailureHandler) // 自定义登录失败处理;
+                .and()
+                .rememberMe()
+                .tokenValiditySeconds(3200)
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login_page.do?info=你已退出登录")//退出登录后的默认网址是”/home”  
+                .permitAll()
+                .invalidateHttpSession(true)
+                .and().csrf().disable();
     }
 
     /**

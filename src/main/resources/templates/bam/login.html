@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login page | Nifty -bootstrap Admin Template</title>
+    <title>账户登录</title>
     <meta name="keywords" content="Nifty,nifty bootstrap,nifty admin,nifty admin 下载" />
     <meta name="description" content="nifty admin 一款非常优秀的bootstrap后台管理html UI" />
     <!--STYLESHEET-->
@@ -76,9 +76,9 @@
             <div class="panel-body">
                 <div class="mar-ver pad-btm">
                     <h1 class="h3">
-                        Account Login</h1>
+                        账户登录</h1>
                     <p>
-                        Sign In to your account</p>
+                        登录你的帐户</p>
                 </div>
                 <form th:action="@{/login}" method="post">
                     <div class="form-group">
@@ -88,17 +88,19 @@
                         <input type="password" name="password" class="form-control" placeholder="password">
                     </div>
                     <div class="checkbox pad-btm text-left">
-                        <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox">
+                        <!--<input   type="checkbox">-->
+                        <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox" name="remember-me"value="true" th:checked="checked"/>
                         <label for="demo-form-checkbox">
-                            Remember me</label>
+                            记住我</label>
                     </div>
+                    <p class="text-pink" th:text="${err}"></p>
                     <button class="btn btn-primary btn-lg btn-block" type="submit">
-                        Sign In</button>
+                        登录</button>
                 </form>
             </div>
             <div class="pad-all">
-                <a href="pages-password-reminder.html" class="btn-link mar-rgt">Forgot password ?</a>
-                <a href="pages-register.html" class="btn-link mar-lft">Create a new account</a>
+                <a href="pages-password-reminder.html" class="btn-link mar-rgt">忘记密码?</a>
+                <a th:href="@{/register.do}" class="btn-link mar-lft">注册</a>
                 <div class="media pad-top bord-top">
                     <div class="pull-right">
                         <a href="#" class="pad-rgt"><i class="demo-psi-facebook icon-lg text-primary"></i>
@@ -121,14 +123,8 @@
             <div class="demo-loading">
                 <i class="psi-repeat-2"></i>
             </div>
-            <img class="demo-chg-bg bg-trans active" src="/img/bg-img/thumbs/bg-trns.jpg" alt="Background Image">
-            <img class="demo-chg-bg" src="/img/bg-img/thumbs/bg-img-1.jpg" alt="Background Image">
-            <img class="demo-chg-bg" src="/img/bg-img/thumbs/bg-img-2.jpg" alt="Background Image">
-            <img class="demo-chg-bg" src="/img/bg-img/thumbs/bg-img-3.jpg" alt="Background Image">
-            <img class="demo-chg-bg" src="/img/bg-img/thumbs/bg-img-4.jpg" alt="Background Image">
-            <img class="demo-chg-bg" src="/img/bg-img/thumbs/bg-img-5.jpg" alt="Background Image">
-            <img class="demo-chg-bg" src="/img/bg-img/thumbs/bg-img-6.jpg" alt="Background Image">
-            <img class="demo-chg-bg" src="/img/bg-img/thumbs/bg-img-7.jpg" alt="Background Image">
+            <img class="demo-chg-bg bg-trans active" src="/img/timg.jpg" alt="Background Image">
+            <img class="demo-chg-bg" src="/img/bg-trns.jpg" alt="Background Image">
         </div>
     </div>
     <!--===================================================-->
